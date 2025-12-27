@@ -3,4 +3,4 @@ services:
     build: .
     container_name: whisper_service
     ports:
-      - "5000:8000"
+      - "4444:8000"
