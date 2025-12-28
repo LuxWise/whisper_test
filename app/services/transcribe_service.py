@@ -19,7 +19,7 @@ COMPUTE_TYPE = os.getenv("WHISPER_COMPUTE_TYPE", "int8")
 model = WhisperModel(MODEL_SIZE, device=DEVICE, compute_type=COMPUTE_TYPE)
 
 
-def convert_to_wav_16k_mono(input_path: Path, output_path: Path) -> None:
+async def convert_to_wav_16k_mono(input_path: Path, output_path: Path) -> None:
     cmd = [
         "ffmpeg",
         "-y",
@@ -59,7 +59,7 @@ async def transcribe_audio(
             raise HTTPException(status_code=400, detail="Empty file")
         raw_path.write_bytes(content)
 
-        convert_to_wav_16k_mono(raw_path, wav_path)
+        await convert_to_wav_16k_mono(raw_path, wav_path)
 
         segments, info = model.transcribe(
             str(wav_path),

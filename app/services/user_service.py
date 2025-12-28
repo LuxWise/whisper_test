@@ -19,3 +19,6 @@ def create_user_service(db: Session, user: UserCreate):
 
 def get_users_service(db: Session):
     return db.query(User).all()
+
+def get_user_service_by_email(db: Session, user_email: str):
+    return db.query(User).filter(User.email == user_email).first()

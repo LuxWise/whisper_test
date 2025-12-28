@@ -13,3 +13,7 @@ async def get_users(db: Session = Depends(get_db)):
 @router.post("/", response_model=UserResponse)
 async def create_user(user: UserCreate, db: Session = Depends(get_db)):
     return user_service.create_user_service(db=db, user=user)
+
+@router.get("/users/{user_email}", response_model=UserResponse)
+async def get_user(user_email: str, db: Session = Depends(get_db)):
+    return user_service.get_user_service(db=db, user_email=user_email)
