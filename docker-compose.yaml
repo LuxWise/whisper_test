@@ -1,6 +1,0 @@
-services:
-  whisper:
-    build: .
-    container_name: whisper_service
-    ports:
-      - "4444:8000"

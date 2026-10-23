@@ -1,0 +1,14 @@
+services:
+  whisper:
+    build: .
+    container_name: whisper_service
+    ports:
+      - "4444:8000"
+    networks:
+      dokploy-network:
+        aliases:
+          - whisper-service
+
+networks:
+  dokploy-network:
+    external: true
